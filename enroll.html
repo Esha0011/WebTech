@@ -1,0 +1,62 @@
+<html>
+    <style>
+        body{
+            background-image: url("4.jpg");
+            background-size: 1400px;
+            font-size:30px;
+            text-align:center 20%;
+            color:aliceblue;
+        }
+        h1{
+            font-size:90px;
+            font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            color:aliceblue;
+            text-shadow: aqua 2px black 2px ;
+        }
+        button{
+            text-align:center;
+            size:35px;
+    
+        }
+    </style>
+    <title>
+       ENROLLMENT
+    </title>
+    <body>
+        <div ng-app="MyJP" ng-controller="Mycntrll">
+            <h1><i>
+                JOB PORTAL ENROLLMENT</i>
+            </h1>
+            <form action="enrollnode.js" method="POST">
+                <p>Candidate Name :
+                <input type="text" ng-model="Cname" name=Cname> </p>
+                <p>Candidate Age: 
+                <input type="text" ng-model="Cage" name=Cage></p>
+                <p>Candidate DOB :
+                <input type="text" ng-model="Cdob" name=Cdob></p>
+                <p>Candidate Qualification :
+                <input type="text" ng-model="Cqua" name=Cqua></p>
+                <button type="submit" ng-click="insert()">SUBMIT</button>
+            </form>
+            </div>
+           <script>
+               var app=angular.module('MyJP',[]);
+               app.controller('Mycntrll',function($scope){
+$scope.insert()=function(){
+    var data=$.params({
+        jobs:JSON.stringify({
+            Cname:$scope.Cname,
+            Cage:$scope.Cage,
+            Cdob:$scope.Cdob,
+            Cqua:$scope.Cqua
+        })
+    });
+    $http.post("/api/jobs/",data).success(function(data,status){
+        console.log('Data Posted')
+    })
+}
+               });
+           </script>
+         
+    </body>
+</html>

@@ -1,0 +1,34 @@
+<html>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+    <!-- <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script> -->
+    <body>
+        <div ng-app="MyTryy" ng-controller="Mycntrller">
+            <table border="2">
+                <th>Name</th>
+                <th>ID</th>
+                <tr ng-repeat="x in names | orderBy : 'x.Name'">
+                    <td>{{x.Name}}</td>
+                    <td>{{x.ID}}</td>
+                </tr>
+            </table>
+            <br>
+            <input type="text" ng-model="fil">
+            <br>
+            <ul>
+                <li ng-repeat="x in names | filter : fil">
+                    {{x.Name + " " + x.ID}}
+                </li>
+            </ul>
+        </div>
+    </body>
+    <script>
+    var app = angular.module('MyTryy',[]);
+    app.controller('Mycntrller',function($scope){
+        $scope.names=[
+        {"Name":"Rejin","ID":"12"},
+        {"Name":"Teena","ID":"32"},
+        {"Name":"Ebby","ID":"22"}];
+    });
+
+    </script>
+</html> 
